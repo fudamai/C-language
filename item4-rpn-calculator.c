@@ -1,14 +1,15 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdlib.h>  // 为了使用atof()函数
 
-#define MAXOP 100
-#define NUMBER '0'
+#define MAXOP 100  // 操作数或运算符的最大长度
+#define NUMBER '0'  // 标识找到一个数
 
 int getop(char[]);
 void push(double);
 double pop(void);
 
 /* 逆波兰计算器 */
+//main()
 main4_rpn()
 {
 	int type;
@@ -28,7 +29,7 @@ main4_rpn()
 			push(pop() - op2);
 			break;
 		case '*':
-			push(pop() + pop());
+			push(pop() * pop());
 			break;
 		case '/':
 			op2 = pop();
@@ -82,7 +83,7 @@ void ungetch(int);
 int getop(char s[])
 {
 	int i, c;
-	
+
 	while ((s[0] = c = getch()) == ' ' || c == '\t')
 		;
 	s[1] = '\0';
@@ -90,13 +91,13 @@ int getop(char s[])
 		return c;  // 不是数
 	i = 0;
 	if (isdigit(c))  // 收集整数部分
-		while (isdigit(s[++i] = c = getch()))  // 小数点在这里已经赋值完成，超前读入一个字符
+		while (isdigit(s[++i] = c = getch()))  // 小数点在这里已经赋值完成，超前读入一个字符。这里会进行两个赋值操作
 			;
 	if (c == '.')  // 收集小数部分
 		while (isdigit(s[++i] = c = getch()))  // 先赋值，再getch。赋值时执行的是覆盖操作。getch返回时，也是先赋值，再判断
 			;
 	s[i] = '\0';
-	if (c != EOF)
+	if (c != EOF)  // 检测到当前字符不是结尾，压回
 		ungetch(c);
 	return NUMBER;
 }

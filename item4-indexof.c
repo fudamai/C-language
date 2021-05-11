@@ -20,7 +20,7 @@ main4_i()
 	return found;
 }
 
-/* getline函数：将行保存到s中，并返回改行的长度 */
+/* getline函数：将行保存到s中，并返回该行的长度 */
 int getline(char s[], int lim)
 {
 	int c, i;

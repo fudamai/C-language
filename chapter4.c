@@ -4,7 +4,7 @@
 void printd(int n);
 void qsort(int v[], int left, int right);
 
-main()
+main4()
 {
 	int days[] = { 1, 1, 3, 9, 2, 3, 4 };
 	char pattern[] = "ooll";
